@@ -75,7 +75,7 @@ class VentanaServidor(QtGui.QWidget, w):
 		if self.pushButton_iniciar_juego.isChecked():
 			if self.snake.Direccion == "AR":
 				z = (x[0] - 1) % self.tableWidget.rowCount()
-				self.snake.Camino.append((z,x[1]))
+				self.snake.Camino.insert(z,x[1])
 				self.snake.Cuerpo.insert(0,[z,x[1]])
 				l = [z,x[1]]
 				try:
@@ -85,7 +85,7 @@ class VentanaServidor(QtGui.QWidget, w):
 				del self.snake.Cuerpo[-1]
 			elif self.snake.Direccion == "AB":
 				z = (x[0] + 1) % self.tableWidget.rowCount()
-				self.snake.Camino.append((z,x[1]))
+				self.snake.Camino.insert(z,x[1])
 				self.snake.Cuerpo.insert(0,[z,x[1]])
 				l = [z,x[1]]
 				try:
@@ -95,7 +95,7 @@ class VentanaServidor(QtGui.QWidget, w):
 				del self.snake.Cuerpo[-1]
 			elif self.snake.Direccion == "D":
 				z = (x[1] + 1) % self.tableWidget.columnCount()
-				self.snake.Camino.append((x[0],z))
+				self.snake.Camino.insert(x[0],z)
 				self.snake.Cuerpo.insert(0,[x[0],z])
 				l = [x[0],z]
 				try:
@@ -105,7 +105,7 @@ class VentanaServidor(QtGui.QWidget, w):
 				del self.snake.Cuerpo[-1]
 			elif self.snake.Direccion == "I":
 				z = (x[1] - 1) % self.tableWidget.columnCount()
-				self.snake.Camino.append((x[0],z))
+				self.snake.Camino.insert(x[0],z)
 				self.snake.Cuerpo.insert(0,[x[0],z])
 				l = [x[0],z]
 				try:
@@ -208,7 +208,7 @@ class Snake():
 		return self.ID
 
 	def DatosSnake(self):
-		estado = {'ID': self.ID, 'Camino': self.Camino, 'Color': self.Color}
+		estado = {'ID': self.ID, 'Camino': self.Cuerpo, 'Color': self.Color}
 		return estado
 
 	def Tam(self):
