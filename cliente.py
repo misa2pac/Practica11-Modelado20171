@@ -73,7 +73,6 @@ class VentanaCliente(QtGui.QWidget, w):
 			self.tableWidget.setRowCount(self.filas)
 			self.tableWidget.setColumnCount(self.columnas)
 		self.vivora= self.estado['vivoras']
-		#for snakes in self.snake:
 		self.Cuerpo = self.vivora['Camino']
 		self.Color = self.vivora['Color']
 		for x in self.Cuerpo:
