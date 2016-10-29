@@ -8,12 +8,8 @@ class VentanaCliente(QtGui.QWidget, w):
 	def __init__(self, parent=None):
 		QtGui.QWidget.__init__(self, parent)
 		self.setupUi(self)
-		self.direccion = 2
-		self.columnas = 0
-		self.filas = 0
 		self.estado = None
 		self.vivora = None
-		self.dir = 2
 		self.timer_estado = QtCore.QTimer()
 		self.timer_estado.timeout.connect(self.Actualizar)
 		self.tableWidget.keyPressEvent = self.keyPressEventTable
@@ -27,13 +23,13 @@ class VentanaCliente(QtGui.QWidget, w):
 		self.lineEdit_color.setReadOnly(True)
 
 	def Ping(self):
-		self.pushButton_ping.setText("Ping")
+		self.pushButton_ping.setText("Pinging...")
 		try:
 			self.url = 'http://' + str(self.lineEdit_url.text()) + ':' + str(self.spinBox_puerto.value())
 			self.cliente = ServerProxy(self.url)
 			self.pushButton_ping.setText(self.cliente.ping())
 		except:
-			self.pushButton_ping.setText("¡Error!")
+			self.pushButton_ping.setText("No pong :(")
 
 	def IniciarJuego(self):
 		self.url = 'http://' + str(self.lineEdit_url.text()) + ':' + str(self.spinBox_puerto.value())
